@@ -1,7 +1,7 @@
-package com.mrle.pamiatkajavista.services;
+package com.prostosasha.pamiatkajavista.services;
 
-import com.mrle.pamiatkajavista.database.CommentRepository;
-import com.mrle.pamiatkajavista.models.Comment;
+import com.prostosasha.pamiatkajavista.database.CommentRepository;
+import com.prostosasha.pamiatkajavista.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

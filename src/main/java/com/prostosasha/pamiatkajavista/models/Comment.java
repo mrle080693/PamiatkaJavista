@@ -1,4 +1,4 @@
-package com.mrle.pamiatkajavista.models;
+package com.prostosasha.pamiatkajavista.models;
 
 import javax.persistence.*;
 

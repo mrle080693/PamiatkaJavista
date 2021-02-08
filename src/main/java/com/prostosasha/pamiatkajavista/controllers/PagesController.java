@@ -1,7 +1,7 @@
-package com.mrle.pamiatkajavista.controllers;
+package com.prostosasha.pamiatkajavista.controllers;
 
-import com.mrle.pamiatkajavista.models.Comment;
-import com.mrle.pamiatkajavista.services.CommentService;
+import com.prostosasha.pamiatkajavista.models.Comment;
+import com.prostosasha.pamiatkajavista.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

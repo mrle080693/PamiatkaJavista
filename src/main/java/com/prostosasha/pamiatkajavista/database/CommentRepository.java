@@ -1,6 +1,6 @@
-package com.mrle.pamiatkajavista.database;
+package com.prostosasha.pamiatkajavista.database;
 
-import com.mrle.pamiatkajavista.models.Comment;
+import com.prostosasha.pamiatkajavista.models.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
