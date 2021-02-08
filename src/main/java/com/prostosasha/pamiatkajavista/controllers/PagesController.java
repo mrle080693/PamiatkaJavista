@@ -15,11 +15,6 @@ public class PagesController {
     @Autowired
     private CommentService commentService;
 
-    @RequestMapping("/")
-    public String getIndexPage() {
-        return "index";
-    }
-
     @RequestMapping("/{pageName}")
     public ModelAndView getPage(@PathVariable String pageName) {
         ModelAndView result = new ModelAndView(pageName);
