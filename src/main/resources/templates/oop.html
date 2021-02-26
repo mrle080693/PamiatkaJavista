@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="D:\Alexander\Projects\JavaShpora\src\main\resources\static\styles.css">
-    <title>Памятка Джависта</title>
+    <title>Home</title>
 </head>
 
 <body style="background-color: #E9ECEF">
@@ -49,12 +49,54 @@
 </nav>
 
 <!-- Main Content -->
-<div>
+<div class="main-content">
     <br>
     <br>
     <br>
     <div class="container">
-        <h1>Памятка Джависта</h1>
+        <h1>ООП</h1>
+        <p>Проект который поможет освежить память перед собеседованием любому джависту
+            и разложить все по полочкам мне.
+        </p>
+        <p>
+            В голове все всегда сумбурно.
+            Для того чтобы структурировать нужно написать на бумаге.
+            <br>
+            А потом подумал что сейчас не каменный век и можно написать в електронном виде.
+            <br>
+            А потом подумал что я же программист и можно сделать сайт который помимо первоначальной цели так же
+            позволит:
+        <ul>
+            <li>Пользоваться этим кому то еще</li>
+            <li>Обзавестись интересным Pet проектом</li>
+        </ul>
+
+        <p>
+            Здесь не будет разжевывания информации.
+            <br>
+            Здесь будет только суть, вкратце и по возможности простыми словами.
+        </p>
+        <p>Проект который поможет освежить память перед собеседованием любому джависту
+            и разложить все по полочкам мне.
+        </p>
+        <p>
+            В голове все всегда сумбурно.
+            Для того чтобы структурировать нужно написать на бумаге.
+            <br>
+            А потом подумал что сейчас не каменный век и можно написать в електронном виде.
+            <br>
+            А потом подумал что я же программист и можно сделать сайт который помимо первоначальной цели так же
+            позволит:
+        <ul>
+            <li>Пользоваться этим кому то еще</li>
+            <li>Обзавестись интересным Pet проектом</li>
+        </ul>
+
+        <p>
+            Здесь не будет разжевывания информации.
+            <br>
+            Здесь будет только суть, вкратце и по возможности простыми словами.
+        </p>
         <p>Проект который поможет освежить память перед собеседованием любому джависту
             и разложить все по полочкам мне.
         </p>
@@ -79,8 +121,31 @@
     </div>
 </div>
 
+<!-- Comments -->
+<div>
+    <div class="container" style="background-color: white">
+        <h1>Какать Здесь</h1>
+
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Page Name</th>
+                <th>User Name</th>
+                <th>Comment</th>
+            </tr>
+
+            <tr th:each="comment : ${comments}">
+                <td th:text="${comment.id}"></td>
+                <td th:text="${comment.pageName}"></td>
+                <td th:text="${comment.userName}"></td>
+                <td th:text="${comment.comment}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 <!-- Footer -->
-<footer class="container">
+<footer class="container text-center" style="background-color: white">
     <p>© ProstoSasha</p>
 </footer>
 
