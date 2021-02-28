@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/global.css">
-    <title>Home</title>
+    <title>ООП</title>
 </head>
 
 <body>
@@ -123,24 +123,48 @@
 
 <!-- Comments -->
 <div>
-    <div class="container comments">
-        <h1>Какать Здесь</h1>
+    <div class="container">
+        <h1>Комментарии</h1>
 
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Page Name</th>
-                <th>User Name</th>
-                <th>Comment</th>
-            </tr>
+        <!-- New Comment -->
+        <div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <input id="userName" class="form-control" type="text" placeholder="Автор">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <textarea id="comment" class="form-control" placeholder="Творение"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <button onclick="save('oop', document.getElementById('userName').value, document.getElementById('comment').value)"
+                            class="btn btn-dark float-right">Смыть</button>
+                </div>
+            </div>
 
-            <tr th:each="comment : ${comments}">
-                <td th:text="${comment.id}"></td>
-                <td th:text="${comment.pageName}"></td>
-                <td th:text="${comment.userName}"></td>
-                <td th:text="${comment.comment}"></td>
-            </tr>
-        </table>
+
+            <!-- Saved Comments -->
+            <div>
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Page Name</th>
+                        <th>User Name</th>
+                        <th>Comment</th>
+                    </tr>
+
+                    <tr th:each="comment : ${comments}">
+                        <td th:text="${comment.id}"></td>
+                        <td th:text="${comment.pageName}"></td>
+                        <td th:text="${comment.userName}"></td>
+                        <td th:text="${comment.comment}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -156,5 +180,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+<script src="js/comments-manager.js"></script>
 </body>
 </html>
