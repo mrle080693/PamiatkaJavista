@@ -127,44 +127,32 @@
         <h1>Комментарии</h1>
 
         <!-- New Comment -->
-        <div>
+        <form action="/comments" method="post">
+            <input type="number" name="id" value="0" hidden>
+            <input type="text" name="pageName" value="oop" hidden>
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <input id="userName" class="form-control" type="text" placeholder="Автор">
+                    <input type="text" class="form-control" placeholder="Автор" name="userName">
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <textarea id="comment" class="form-control" placeholder="Творение"></textarea>
+                    <textarea type="text" class="form-control" placeholder="Творение" name="comment"></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <button onclick="save('oop', document.getElementById('userName').value, document.getElementById('comment').value)"
-                            class="btn btn-dark float-right">Смыть</button>
+                    <button type="submit" class="btn btn-dark float-right">Смыть</button>
                 </div>
             </div>
+        </form>
 
-
-            <!-- Saved Comments -->
-            <div>
-                <table>
-                    <tr>
-                        <th>Id</th>
-                        <th>Page Name</th>
-                        <th>User Name</th>
-                        <th>Comment</th>
-                    </tr>
-
-                    <tr th:each="comment : ${comments}">
-                        <td th:text="${comment.id}"></td>
-                        <td th:text="${comment.pageName}"></td>
-                        <td th:text="${comment.userName}"></td>
-                        <td th:text="${comment.comment}"></td>
-                    </tr>
-                </table>
-            </div>
+        <!-- Saved Comments -->
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" th:each="comment : ${comments}">
+            <h3 th:text="${comment.userName}"></h3>
+            <p th:text="${comment.comment}"></p>
         </div>
+
     </div>
 </div>
 
