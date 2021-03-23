@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <title>Коллекции</title>
+</head>
+
+<body>
+<!-- Header -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/author">Автор</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">О проекте <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="">Кинуть Печеньку</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" style="color: white">Памятка</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="/oop">ООП</a>
+                    <a class="dropdown-item" href="/object-methods">Методы Класса Object</a>
+                    <a class="dropdown-item" href="/collections">Коллекции</a>
+                    <a class="dropdown-item" href="/stream-api">Stream API</a>
+                    <a class="dropdown-item" href="/multithreading">Многопоточность</a>
+                    <a class="dropdown-item" href="/sql">SQL</a>
+                    <a class="dropdown-item" href="/jdbs">JDBC</a>
+                    <a class="dropdown-item" href="/orm">ORM</a>
+                    <a class="dropdown-item" href="/jpa">JPA</a>
+                    <a class="dropdown-item" href="/spring">Spring</a>
+                    <a class="dropdown-item" href="/rest">REST</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Коллекции</h1>
+        <p>Коллекции - это обЬекты для хранения обЬектов. </p>
+        <p>
+            Найболее часто использующимися из них являются:
+        <ul>
+            <li>ArrayList</li>
+            <li>LinkedList</li>
+            <li>HashSet</li>
+            <li>TreeSet</li>
+            <li>HashMap</li>
+            <li>TreeMap</li>
+        </ul>
+        </p>
+        <p>
+            <b>ArrayList</b> - структура данных для хранения обЬектов упорядоченных по индексу на основе массива но в
+            отличии
+            от него изменяющая свою длинну.
+            На самом деле под капотом у ArrayList обычный массив но он пересоздается при изменении его размеров.
+            <br>
+            Может хранить null значения.
+        </p>
+        <p>
+            <b>LinkedList </b> - структура данных для хранения обЬектов упорядоченных по индексу на основе двусвязного
+            списка. Так же с LinkedList мы можем работать как с двунаправленной очередью.
+            <br>
+            Может хранить null значения.
+        </p>
+        <p>
+            <b>HashSet </b> - структура данных для хранения уникальных обЬектов на основе хеш таблиц.
+            Ключем к обЬекту является hashCode этого же обЬекта.
+            <br>
+            Может хранить один Null. При добавлении второго Null будет перезаписан первый.
+        </p>
+        <p>
+            <b>TreeSet </b> - структура данных для хранения уникальных обЬектов упорядоченных по выбранному с помощью
+            comparable или comparator параметру или параметрам на основе дерева.
+            <br>
+            Не может быть Null т.к. в таком случае не понятно как сортировать.
+        </p>
+        <p>
+            <b>HashMap </b> - структура данных для хранения пар обЬектов(ключ - значение).
+            <br>
+            Внутри HashMap устроен как массив связных списков(бакетов) каждый елемент которого имеет одну ссылку(на
+            значение).
+            В зависимости от хеш кода ключа добавляемой пары(ключ - значение)
+            ключ попадает в один из связных списков(бакетов). Каждый елемент связного списка(ключ) имеет ссылку на
+            значение.
+            Таким образом дотигается быстрый доступ к елементам HashMap. Допустим у нас 10 бакетов по 10 елементов и
+            чтобы
+            найти нужный елемент нам нужно перебрать максимум 10 елементов массива и максимум 10 елементов бакета
+            чтобы получить ссылку на нужное нам значение. Итого максимум 20 вместо 100.
+            <br>
+            Null может быть один ключ и сколько угодно значений.
+            При добавлении второго Null ключа будет перезаписано значение первого.
+        </p>
+        <p>
+            <b>TreeMap </b> - структура данных для хранения пар обЬектов(ключ - значение) упорядоченных по выбранному с
+            помощью
+            comparable или comparator параметру или параметрам на основе дерева.
+            <br>
+            Сортировка осуществляется по ключам.
+            <br>
+            Не может быть ни одного Null ключа но может сколько угодно Null значений.
+        </p>
+        <p>
+            Каждая из приведенных выше коллекций имеет потокобезопасный аналог.
+        </p>
+
+        <br>
+
+        <p>
+            <i>Связной Список</i> - структура данных в которой елементы имеют ссылку на следующий елемент.
+            <br>
+        </p>
+        <p>
+            <i>Двусвязный Список</i> - структура данных в которой елементы имеют ссылку на следующий и предидущий
+            елементы.
+            При такой организации хранения елементов удобно изменять их колличество (даже в середине списка) т.к.
+            для этого придется просто поменять ссылки граничащих с новым или удаленным елементом.
+        </p>
+        <p>
+            <i>Очередь</i> - структура данных в которой елементы хранятся в порядке их добавления и мы имеем доступ
+            только к тому который был добавлен первым. First in first out(FIFO).
+        </p>
+        <p>
+            <i>Стэк</i> - структура данных в которой елементы хранятся в порядке их добавления и мы имеем доступ только
+            к тому который был добавлен последним. Last in first out(LIFO).
+        </p>
+        <p>
+            <i>Двунаправленная Очередь</i> - структура данных в которой мы имеем доступ только к первому и последнему
+            елементу.
+        </p>
+        <p>
+            <i>Хэш Таблица</i> - структура данных в которой хранятся пары елементов (ключ - значение).
+        </p>
+        <p>
+            <i>Дерево</i> - структура данных при которой есть корневой елемент имеющий две ссылки
+            (на больший и меньший по какому то признаку елемент). Каждый елемент так же имеет две ссылки (на больший и
+            меньший).
+            Елементы не имеющие ссылок называются листва.
+            <br>
+            Это позволяет хранить данные в сортированном по какому то свойству
+            или свойствам виде и иметь быстрый доступ к елементам.
+        </p>
+
+        <h4>Выводы</h4>
+        <p>
+            Если нам неизвестно колличество обЬектов или оно будет постоянно менятся используем вместо массивов
+            ArrayList.
+        </p>
+        <p>
+            Если мы в дальнейшем собираемся часто менять кол-во обЬектов в ArrayList используем LinkedList.
+        </p>
+        <p>
+            Если обЬекты должны быть уникальными HashSet.
+        </p>
+        <p>
+            Если уникальные обЬекты должны быть отсортированы по какому то признаку TreeSet.
+        </p>
+        <p>
+            Есть возможность хранить данные в виде ключ-значение. HashMap - для быстрой навигации.
+            TreeMap - тоже быстро но медленне чем HashMap
+            зато в отсортированном по выбранному нами параметру или параметрам виде.
+        </p>
+    </div>
+</div>
+
+<!-- Comments -->
+<div>
+    <div class="container">
+        <h1>Комментарии</h1>
+
+        <!-- New Comment -->
+        <form action="/comments" method="post">
+            <input type="number" name="id" value="0" hidden>
+            <input type="text" name="pageName" value="collections" hidden>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <input type="text" class="form-control" placeholder="Автор" name="userName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <textarea type="text" class="form-control" placeholder="Творение" name="comment"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <button type="submit" class="btn btn-dark float-right">Смыть</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Saved Comments -->
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" th:each="comment : ${comments}">
+            <h3 th:text="${comment.userName}"></h3>
+            <p th:text="${comment.comment}"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container text-center">
+    <p>© ProstoSasha</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+</html>
