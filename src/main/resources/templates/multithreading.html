@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <title>Многопоточность</title>
+</head>
+
+<body>
+<!-- Header -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/author">Автор</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">О проекте <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="">Кинуть Печеньку</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" style="color: white">Памятка</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="/oop">ООП</a>
+                    <a class="dropdown-item" href="/object-methods">Методы Класса Object</a>
+                    <a class="dropdown-item" href="/collections">Коллекции</a>
+                    <a class="dropdown-item" href="/multithreading">Многопоточность</a>
+                    <a class="dropdown-item" href="/sql">SQL</a>
+                    <a class="dropdown-item" href="/jdbs">JDBC</a>
+                    <a class="dropdown-item" href="/orm">ORM</a>
+                    <a class="dropdown-item" href="/jpa">JPA</a>
+                    <a class="dropdown-item" href="/spring">Spring</a>
+                    <a class="dropdown-item" href="/rest">REST</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Многопоточность</h1>
+        <p>
+            Многопоточность - возможность выполнения нескольких действий в одну единицу времени.
+            <br>
+            Сколько иммено зависит от колличества ядер.
+            <br>
+            Если многопоточная программа будет выполнятся на системе с одноядерным процессором значит задачи возложенные
+            на разные потоки будут выполнятся не в одну еденицу в ремени, а поочередно (псевдо многопоточность).
+        </p>
+
+        <h4>Создание нового потока</h4>
+        <ol>
+            <li>Наследоваться от Thread или реализовать Runnable</li>
+            <li>Переопределить run(), написав в нем код которым будет заниматься новый поток</li>
+            <li>Создать екземпляр класса который наследуется от Thread или создать новый Thread передав ему екземпляр
+                класса реализующего Runnable
+            </li>
+            <li>Вызвать метод start (не run() !!!!!!!!) у екземпляра класса который наследуется от Thread или екземпляра
+                Thread которому был передан екземпляр класса реализовывающего Runnable
+            </li>
+        </ol>
+
+        <h4>Методы</h4>
+        <p><b>start()</b> - начать выполнение потока</p>
+        <p><b>run()</b> - внутри этого метода пишем чем собственно новый поток будет заниматься</p>
+        <p><b>getName()</b> - узнать имя потока</p>
+        <p><b>setName()</b> - назвать поток</p>
+        <p><b>getPriority()</b> - узнать приоритет потока</p>
+        <p><b>setPriority(int priority)</b> - установить приоритет потока.
+            <br>
+            priority может быть от 1 до 10.
+            <br>
+            main поток по умолчанию 5.
+            <br>
+            Так оно в теории, а на практике что хочет то и делает т.к. наш priority не является единственным критерием
+            по которому определяется приоритетность. А по какому еще определяется напишите в комментариях.
+        </p>
+        <p><b>interrupt()</b> - прервать выполнение потока</p>
+        <p><b>isAlive()</b> - возвращает true, если поток активен</p>
+        <p><b>isInterrupted()</b> - возвращает true, если поток был прерван</p>
+
+        <p><b>sleep(howLong)</b> - спать(как долго в млс)</p>
+        <p><b>wait()</b> - sleep пока не получит notify</p>
+        <p><b>notify()</b> - разбудить</p>
+        <p><b>notifyAll()</b> - разбудить всех кто wait()</p>
+        <p><b>join()</b> - ждать завершения потока</p>
+
+        <h4>Некоторые понятия</h4>
+        <p>
+            <b>volatile </b> - это запрет на запись переменной в кеш памяти дабы избежать ситуации когда значение
+            переменной изменилось а в кеше не было поменяно.
+        </p>
+        <p><b>Dead Lock</b> (взаимная блокировка) - потоки ждут друг друга</p>
+        <p><b>Racing Condition</b> (состояние гонки) - это недостаток, возникающий, когда время или порядок событий
+            влияют на правильность программы</p>
+        <p>
+            При работе с <b>synchronized</b> методом лочится доступ всех <b>synchronized</b> методов <b>обЬекта</b>
+            для других потоков. Если <b>synchronized</b> метод еще и <b>static</b> лочится класс
+            (т.к. метод пренадлежит классу а не обЬекту).
+        </p>
+    </div>
+</div>
+
+<!-- Comments -->
+<div>
+    <div class="container">
+        <h1>Комментарии</h1>
+
+        <!-- New Comment -->
+        <form action="/comments" method="post">
+            <input type="number" name="id" value="0" hidden>
+            <input type="text" name="pageName" value="multithreading" hidden>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <input type="text" class="form-control" placeholder="Автор" name="userName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <textarea type="text" class="form-control" placeholder="Творение" name="comment"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <button type="submit" class="btn btn-dark float-right">Смыть</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Saved Comments -->
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" th:each="comment : ${comments}">
+            <h3 th:text="${comment.userName}"></h3>
+            <p th:text="${comment.comment}"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container text-center">
+    <p>© ProstoSasha</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+</html>
