@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <title>SQL</title>
+</head>
+
+<body>
+<!-- Header -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/author">Автор</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">О проекте <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="">Кинуть Печеньку</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" style="color: white">Памятка</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="/oop">ООП</a>
+                    <a class="dropdown-item" href="/object-methods">Методы Класса Object</a>
+                    <a class="dropdown-item" href="/collections">Коллекции</a>
+                    <a class="dropdown-item" href="/multithreading">Многопоточность</a>
+                    <a class="dropdown-item" href="/sql">SQL</a>
+                    <a class="dropdown-item" href="/jdbs">JDBC</a>
+                    <a class="dropdown-item" href="/orm">ORM</a>
+                    <a class="dropdown-item" href="/jpa">JPA</a>
+                    <a class="dropdown-item" href="/spring">Spring</a>
+                    <a class="dropdown-item" href="/rest">REST</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>SQL</h1>
+        <p>
+            Язык структурированных запросов к системе управления реляционными базами данных(СУБД).
+        </p>
+        <br>
+        <p>
+            СУБД - это программа которая занимается долгосрочным хранением информации в виде таблиц и связей между ними,
+            их созданием, удалением, изменением и обработкой информации содержащейся в этих же таблицах. Чтобы СУБД
+            что то сделала ей нужно об этом сказать. Человечесских языков она не понимает. Только SQL.
+        </p>
+
+        <h4>Словарь</h4>
+        <p>
+            <b>database</b> - база данных
+            <br>
+            <b>table</b> - таблица
+            <br>
+        </p>
+        <p>
+            <b>create</b> - создать базу или таблицу
+            <br>
+            <b>drop</b> - удалить базу или таблицу
+            <br>
+            <b>unique</b> - значения в столбце должны быть уникальными.
+            <br>
+            <b>primary key</b> - unique + not null.
+            <br>
+            <b>default</b> - значение по умолчанию
+            <br>
+            <b>check</b> - проверь.
+            <br>
+        </p>
+        <p>
+            <b>insert</b> - добавь запись.
+            <br>
+            <b>select</b> - найди запись.
+            <br>
+            <b>update</b> - обнови запись.
+            <br>
+            <b>delete</b> - удали запись.
+            <br>
+        <p/>
+        <p>
+            <b>distinct</b> - выбери из колонки только уникалные значения
+            <br>
+            <b>order by</b> - отсортируй от меньшего к большему по значению колонки x
+            <br>
+            <b>where</b> - уточнение
+            <br>
+            <b>join</b> - выборка из нескольких таблиц
+            <br>
+        </p>
+
+        <h4>Как сказать</h4>
+        <table>
+            <tr>
+                <th>Русский</th>
+                <th>SQL</th>
+            </tr>
+            <tr>
+                <td>Создай базу данных с именем магазин</td>
+                <td>create database shop;</td>
+            </tr>
+            <tr>
+                <td>
+                    Создай табличку товары с колонками id, наименование, колличество, цена.
+                    Имя не должно быть больше 20 символов.
+                    id должен быть уникальным автоинкрементирующимся числом и быть должен.
+                </td>
+                <td>create table products (id serial primary key, name varchar(20), quantity integer, price integer);
+                </td>
+            </tr>
+            <tr>
+                <td>Добавь к товарам 11 шоколадок по 50 и 5 по 70</td>
+                <td>
+                    insert into products (name, quantity, price) values ('chocolate', 11, 50);
+                    <br>
+                    insert into products (name, quantity, price) values ('chocolate', 5, 70);
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Что есть на складе?
+                </td>
+                <td>select distinct name from products;</td>
+            </tr>
+            <tr>
+                <td>
+                    Какие цены на шоколад(от меньшего к большему)?
+                </td>
+                <td>select distinct price from products where name = 'chocolate' group by price;</td>
+            </tr>
+            <tr>
+                <td>
+                    Создай табличку покупатели с колонками имя и возраст.
+                    Имя должно быть не более 44 символов, уникальным и быть должно.
+                    Возраст по умолчанию должен быть 18.
+                    Покупателю не может быть меньше 18 лет.
+                </td>
+                <td>create table customers (name varchar(44) primary key, age integer default 18 check(age >=18));</td>
+            </tr>
+            <tr>
+                <td>
+                    Дай мне пожалуйста значения колонки из первой и второй таблицы(допустим они есть) сопоставляя их по
+                    id.
+                </td>
+                <td>
+                    SELECT table_one.column_from_table_one, table_two.column_from_table_two
+                    <br>
+                    FROM table_one
+                    <br>
+                    JOIN table_two ON table_one.id = table_two.id;
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+        <p>
+            На самом деле словарь намного больше и может немного отличаться, в зависимости от СУБД с которой мы
+            общаемся. В данной статье примеры общения с СУБД которую зовут PostgreSQL.
+        </p>
+    </div>
+</div>
+
+<!-- Comments -->
+<div>
+    <div class="container">
+        <h1>Комментарии</h1>
+
+        <!-- New Comment -->
+        <form action="/comments" method="post">
+            <input type="number" name="id" value="0" hidden>
+            <input type="text" name="pageName" value="sql" hidden>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <input type="text" class="form-control" placeholder="Автор" name="userName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <textarea type="text" class="form-control" placeholder="Творение" name="comment"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <button type="submit" class="btn btn-dark float-right">Смыть</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Saved Comments -->
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" th:each="comment : ${comments}">
+            <h3 th:text="${comment.userName}"></h3>
+            <p th:text="${comment.comment}"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container text-center">
+    <p>© ProstoSasha</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+</html>
