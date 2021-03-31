@@ -7,5 +7,3 @@ CREATE TABLE comments
   user_name    varchar(22),
   comment varchar(1000)
 );
-
-insert into comments (page_name, user_name, comment) values ('first-article', 'Trol', 'Huinia');
