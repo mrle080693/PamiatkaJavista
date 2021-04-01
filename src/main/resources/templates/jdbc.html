@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <title>JDBC</title>
+</head>
+
+<body>
+<!-- Header -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/author">Автор</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">О проекте <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="">Кинуть Печеньку</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" style="color: white">Памятка</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="/oop">ООП</a>
+                    <a class="dropdown-item" href="/object-methods">Методы Класса Object</a>
+                    <a class="dropdown-item" href="/collections">Коллекции</a>
+                    <a class="dropdown-item" href="/multithreading">Многопоточность</a>
+                    <a class="dropdown-item" href="/sql">SQL</a>
+                    <a class="dropdown-item" href="/jdbs">JDBC</a>
+                    <a class="dropdown-item" href="/orm">ORM</a>
+                    <a class="dropdown-item" href="/jpa">JPA</a>
+                    <a class="dropdown-item" href="/spring">Spring</a>
+                    <a class="dropdown-item" href="/rest">REST</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>JDBC</h1>
+        <p>JDBC - возможность работать с СУБД из Java кода.</p>
+
+        <h4>Как работать?</h4>
+        <ol>
+            <li>Подтягиваем JDBC драйвер(через pom.xml || ручками)</li>
+            <li>Открываем Connection(url, username, password)</li>
+            <li>Создаем Statement и передаем в него SQL запрос</li>
+            <li>Передаем параметры запроса(опционально)</li>
+            <li>Если запрос должен что то вернуть используем ResultSet</li>
+            <li>Закрываем Statement и Connection(если использовать try с ресурсами сами закроются)</li>
+            <li>Идем пить кофеек</li>
+        </ol>
+
+        <h4>Statements бывают</h4>
+        <ul>
+            <li>Statement</li>
+            <li>PreparedStatement</li>
+            <li>CallableStatement</li>
+        </ul>
+        <p>
+            <b>Statement</b> - для статичесских запросов(не слыхал о параметрах в SQL).
+            Статичесский SQL запрос может динамически формироваться до попадания в Statement с помощью java в одну
+            строку, но в таком случае данные будут передаваться в браузерной строке, что никак не защищает от иньекций.
+        </p>
+        <p>
+            <b>PreparedStatement</b> - может использоваться как для статичесских так и динамичесских запросов.
+            <br>
+            Защищает от иньекций.
+        </p>
+        <p><b>CallableStatement</b> - для хранимых процедур.</p>
+        <p><i>Иньекции</i> - способ украсть данные путем подмены значения параметра.</p>
+        <p>
+            <i>Хранимые процедуры</i> - это когда запросы хранятся в СУБД. Вместо написания запроса мы вызываем
+            процедуру
+            и передаем ей некоторые параметры. Смысл этого в том что как устроена БД знает только СУБД, а это и
+            безопасность(а)
+            и более четкое разделение ответственностей(б).
+            <br>
+            <i>а) </i>Вместо того чтобы писать <code>insert into users(name, surname) ('Пример', 'Примеров');</code>
+            из чего сразу понятно что в бд есть таблица с названием users, мы вызываем хранимую процедуру с названием
+            saveUser и передаем ей имя и фамилию. Что там происходит дальше, знает только СУБД. Может оно еще это как то
+            проверяет. Может у нее там вообще все по Испански, кроме названий хранимых процедур.
+            Может у нее 2 таблицы для имен и фамилий(хи хи). Мы этого уже не узнаем.
+            <br>
+            <i>б) </i>Зачем мне в коде писать как и что должно лежать в БД?
+            Из каких таблиц что взять? Если мне нужно просто взять и не переключаться на подробности того как же оно там
+            в таблицах хранится и как это достать. Пусть этим занимается СУБД.
+            <br>
+        </p>
+    </div>
+</div>
+
+<!-- Comments -->
+<div>
+    <div class="container">
+        <h1>Комментарии</h1>
+
+        <!-- New Comment -->
+        <form action="/comments" method="post">
+            <input type="number" name="id" value="0" hidden>
+            <input type="text" name="pageName" value="jdbc" hidden>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <input type="text" class="form-control" placeholder="Автор" name="userName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <textarea type="text" class="form-control" placeholder="Творение" name="comment"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <button type="submit" class="btn btn-dark float-right">Смыть</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Saved Comments -->
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" th:each="comment : ${comments}">
+            <h3 th:text="${comment.userName}"></h3>
+            <p th:text="${comment.comment}"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container text-center">
+    <p>© ProstoSasha</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+</html>
